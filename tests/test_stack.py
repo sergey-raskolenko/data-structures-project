@@ -4,6 +4,7 @@ from src.stack import Stack
 class TestStack(unittest.TestCase):
 	def test__init__(self):
 		stack = Stack()
+		self.assertIsInstance(stack, Stack)
 		self.assertEqual(stack.top, None)
 	def test__str__(self):
 		stack = Stack()
