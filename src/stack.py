@@ -1,17 +1,4 @@
-class Node:
-    """Класс для узла стека"""
-
-    def __init__(self, data, next_node=None):
-        """
-        Конструктор класса Node
-
-        :param data: данные, которые будут храниться в узле
-        :param next_node: следующие данные узла
-        """
-        self.data = data
-        self.next_node = next_node
-
-
+from src.node import Node
 class Stack:
     """Класс для стека"""
 
@@ -19,6 +6,17 @@ class Stack:
         """Инициализация пустого стэка класса Stack"""
         self.top = None
 
+
+    def __str__(self) -> str:
+        """
+        Отображает содержимое стэка от вершины
+        """
+        stack_output = []
+        node_in_stack = self.top
+        while node_in_stack != None:
+            stack_output.append(str(node_in_stack.data))
+            node_in_stack = node_in_stack.next_node
+        return '\n'.join(stack_output)
 
     def push(self, data_to_stack: Node):
         """
