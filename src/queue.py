@@ -9,6 +9,17 @@ class Queue:
         self.tail = None
         self.head = None
 
+    def __str__(self):
+        """
+        Отображает содержимое очереди с головы до хвоста
+        """
+        queue_output = []
+        node_in_queue = self.head
+        while node_in_queue != None:
+            queue_output.append(str(node_in_queue.data))
+            node_in_queue = node_in_queue.next_node
+        return '\n'.join(queue_output)
+
     def enqueue(self, data):
         """
         Метод для добавления элемента в очередь
@@ -30,14 +41,9 @@ class Queue:
 
         :return: данные удаленного элемента
         """
-        pass
-    def __str__(self):
-        """
-        Отображает содержимое очереди с головы до хвоста
-        """
-        queue_output = []
-        node_in_queue = self.head
-        while node_in_queue != None:
-            queue_output.append(str(node_in_queue.data))
-            node_in_queue = node_in_queue.next_node
-        return '\n'.join(queue_output)
+        if self.head is None:
+            return None
+        else:
+            data_to_out = self.head.data
+            self.head = self.head.next_node
+            return data_to_out
