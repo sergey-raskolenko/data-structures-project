@@ -10,6 +10,13 @@ class QueueTestCase(unittest.TestCase):
 		self.assertEqual(queue.tail, None)
 		self.assertEqual(queue.head, None)
 
+	def test__str__(self):
+		queue = Queue()
+		queue.enqueue(1)
+		queue.enqueue(2)
+		queue.enqueue(3)
+		self.assertEqual(str(queue),"1\n2\n3")
+
 	def test_enqueue(self):
 		queue = Queue()
 		queue.enqueue(1)
@@ -21,12 +28,22 @@ class QueueTestCase(unittest.TestCase):
 		self.assertEqual(queue.tail.next_node, None)
 		self.assertRaises(AttributeError)
 
-	def test__str__(self):
+	def test_dequeue(self):
 		queue = Queue()
 		queue.enqueue(1)
 		queue.enqueue(2)
 		queue.enqueue(3)
-		self.assertEqual(str(queue),"1\n2\n3")
+		self.assertEqual(queue.dequeue(), 1)
+		self.assertEqual(str(queue), "2\n3")
+		self.assertEqual(queue.dequeue(), 2)
+		self.assertEqual(str(queue), "3")
+		self.assertEqual(queue.dequeue(), 3)
+		self.assertEqual(str(queue), '')
+		self.assertEqual(queue.dequeue(), None)
+		self.assertEqual(str(queue), '')
+
+
+
 
 if __name__ == "__main__":
 	unittest.main()
